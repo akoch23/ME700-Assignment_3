@@ -14,7 +14,7 @@ For the given finite element type, here is the expected input code and resulting
 ```python
 from finiteelementanalysis import discretization_demo_helper_fcns as di_demo
 
-# Define function variables (finite element type, # of gauss points in specified element type, and plot type for specified element type)
+# Define function variables (finite element type, # of gauss points in specified element type, plot type for specified element type, and desired file name)
 ele_type = "D2_nn3_tri"
 num_gauss_pts = 3
 fname = "D2_nn3_tri_3gp.png"
@@ -32,14 +32,21 @@ For the given finite element type, here is the expected input code and resulting
 from finiteelementanalysis import discretization_demo_helper_fcns as di_demo
 import numpy as np
 
+# Define function that will weight nodes
 def fcn(xi, eta):
     return 2.0 * xi + 3.0 * eta + 1.5 * xi * eta
 
+# Define variables for visualization function (finite element type, array contain node coordinates (exact coordinates are user defined), value of the field at each node (using previously defined fcn function), and desired file name). 
 ele_type = "D2_nn3_tri"
-node_coords = np.array([[-1, -1], [1, -1], [1, 1], [-1, 1]])
+node_coords = np.array([[0, 0], [1, 0], [0, 1]])
 node_values = np.array([fcn(xi, eta) for xi, eta in node_coords])
-
 fname = ele_type + "_interpolate_fcn.png"
-di_demo.plot_interpolate_field_natural_coords_single_element(fname, ele_type, node_values)
+
+# Visualize Scalar Field interpolated across a sampling of points in natural coordinates
+plot_interpolate_field_natural_coords_single_element(fname, ele_type, node_values)
 ```
+![image](https://github.com/user-attachments/assets/3b201a00-85fa-4aa8-85ba-1b7175ab9708)
+
+
+
 
