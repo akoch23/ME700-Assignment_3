@@ -20,3 +20,4 @@ fname = "D2_nn6_tri_3gp.png"
 visualize_gauss_pts(fname, ele_type, num_gauss_pts)
 
 ```
+![image](https://github.com/user-attachments/assets/47c59a26-5171-4994-85ae-675b494831bc)
