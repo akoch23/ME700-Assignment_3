@@ -1,3 +1,39 @@
 **Example 1: Discretization of a 2D element (linear, triangular)**
 
+The existing FEA discretization modules grant users the ability to analyze and visualize several finite element types. In this example, a 2D triangular element with 3 nodes will be used. To The user need only define these few variables:
+- ele_type: 
+- num_gauss_pts:
+- fname:
 
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from bisectionmethod import bisection_method as bim\n",
+    "import os\n",
+    "from pathlib import Path\n",
+    "\n",
+    "# Define the function\n",
+    "def f(x):\n",
+    "    return x**2 - 2\n",
+    "\n",
+    "# Define the bounds\n",
+    "a = 1.0  # Lower bound\n",
+    "b = 2.0  # Upper bound\n",
+    "\n",
+    "# Call the bisection method\n",
+    "result = bim.run_bisection_method(fcn=f, a=a, b=b, tol_input=1e-9, tol_output=1e-30)\n",
+    "\n",
+    "# Print the result\n",
+    "print(\"Root:\", result[\"solution\"])\n",
+    "print(\"Number of iterations:\", result[\"num_iter\"])\n",
+    "\n",
+    "# Plot the results\n",
+    "fig_name_with_path = Path(os.getcwd()).resolve().joinpath(\"figs\").resolve().joinpath(\"tutorial_1_bisection_results.png\").resolve()\n",
+    "bim.plot_bisection_results(result, fig_name_with_path)\n",
+    "fig_name_with_path = Path(os.getcwd()).resolve().joinpath(\"figs\").resolve().joinpath(\"tutorial_1_function_vis.png\").resolve()\n",
+    "bim.plot_function_with_inset(f, result, fig_name_with_path)"
+   ]
+  }
