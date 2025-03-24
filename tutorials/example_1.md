@@ -9,6 +9,7 @@ The existing FEA discretization modules grant users the ability to analyze and v
 Additionally, the exact syntax that you will need to define some of these variables are explained within the discretization and discretization_demo_helper_fcns modules, so you could have those open concurrently with this tutorial.
 
 **Visualization of Gauss Points and Element Nodes for 2D Triangular Element with 3 Nodes**
+
 For the given finite element type, here is the expected input code and resulting output:
 
 ```python
@@ -26,6 +27,7 @@ visualize_gauss_pts(fname, ele_type, num_gauss_pts)
 ![image](https://github.com/user-attachments/assets/47c59a26-5171-4994-85ae-675b494831bc)
 
 **Visualization of Interpolated Field for 2D Triangular Element with 3 Nodes**
+
 For the given finite element type, here is the expected input code and resulting output:
 
 ```python
@@ -48,6 +50,7 @@ plot_interpolate_field_natural_coords_single_element(fname, ele_type, node_value
 ![image](https://github.com/user-attachments/assets/3b201a00-85fa-4aa8-85ba-1b7175ab9708)
 
 **Visualzation of Reference Elemement (Natural Coordinates) and Mapped Element (Physical Coordinates)**
+
 For the given finite element type, here is the expected input code and resulting output:
 
 ```python
