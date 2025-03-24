@@ -2,7 +2,7 @@
 
 The existing FEA discretization modules grant users the ability to analyze and visualize several finite element types. In this example, a 2D triangular element with 3 nodes will be used.
 
-Additionally, the exact syntax that you will need to define some of these variables are explained within the discretization and discretization_demo_helper_fcns modules, so you could have those open concurrently with this tutorial.
+Additionally, the exact syntax that you will need to define some of these variables are explained within the discretization and discretization_demo_helper_fcns modules, so you may have those open concurrently with this tutorial.
 
 **Visualization of Gauss Points and Element Nodes for 2D Triangular Element with 3 Nodes**
 
