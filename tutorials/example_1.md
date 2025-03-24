@@ -17,7 +17,7 @@ from finiteelementanalysis import discretization_demo_helper_fcns as di_demo
 # Define function variables (finite element type, # of gauss points in specified element type, and plot type for specified element type)
 ele_type = "D2_nn3_tri"
 num_gauss_pts = 3
-fname = "D2_nn6_tri_3gp.png"
+fname = "D2_nn3_tri_3gp.png"
 
 # Visualize Gauss points and element nodes in natural coordinates
 visualize_gauss_pts(fname, ele_type, num_gauss_pts)
@@ -35,7 +35,7 @@ import numpy as np
 def fcn(xi, eta):
     return 2.0 * xi + 3.0 * eta + 1.5 * xi * eta
 
-ele_type = "D2_nn4_quad"
+ele_type = "D2_nn3_tri"
 node_coords = np.array([[-1, -1], [1, -1], [1, 1], [-1, 1]])
 node_values = np.array([fcn(xi, eta) for xi, eta in node_coords])
 
