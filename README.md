@@ -37,6 +37,19 @@ pytest -v --cov=DSM_functions --cov-report term-missing
 ```
 
 
-## Solver Description
+## FEA Solver Overview (via tutorials/full_code_example_1.py)
+- Overview:
+    - As stated by the initial documentation, this code solves a finite element analysis (FEA) problem for a homogeneous uniaxial extension, comparing the computed displacement field to an analytical solution. More specifically, it simulates the response of a rectangular domain under a uniaxial extension via FEA. The results are visualized through a plot and an animated GIF showing the deformation over time.
 
-Direct Stiffness Method  Solver is still WIP
+- Imports and Setup
+    - Warning Handling: The line "warnings.simplefilter("always")" ensures that all warnings are displayed during the execution of the code.
+    - Required libraries for FEA Solver operation:
+        - Specialized: Several modules are imported specifically from the finiteelementanalysis folder (pre_process, pre_process_demo_helper, and the hyperelastic_solver function from the solver module)
+        - General: matplotlib, numpy, and pathlib are imported for graphing, mathematic operations, and file system pathing respectively
+- Defining of Boundary Condition and Analytical Solution
+    - 
+- Mesh Generation
+- Application of Boundary Conditions
+- Solver Setup
+- Comparison of genereated displacements with analytical solution values
+- Displacement Visualization
