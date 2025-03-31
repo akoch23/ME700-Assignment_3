@@ -70,4 +70,7 @@ pytest -v --cov=DSM_functions --cov-report term-missing
       - A nonlinear solver function "hyperelastic_solver" is used to compute the nodal displacements for the element for the defined number of incremental loading steps, with set convergence tolerances and maximum number of iterations.
   
 - Comparison of genereated displacements with analytical solution values
-- Displacement Visualization
+      - After solving for the displacements, the code extracts the displacement in the x-direction (u_x) for the nodes near the mid-height (H/2)
+      - The computed displacement values are compared to the analytical solution (u_z(x) = (lambda - 1) * x)
+      - The computed displacement is graphically compared to the analytical solution via matplotlib. This plot is saved as a .png image in the tutorials directory/folder.
+      - Additionally, an animation of the deformation is generated using the function viz.make_deformation_gif, which creates a .gif file to illustrate how the mesh deforms over time.
