@@ -53,24 +53,24 @@ pytest -v --cov=DSM_functions --cov-report term-missing
     - The Analytical Solution (displacement field) is defined as u_x(x) = (lambda - 1) * x, u_y(x)
  
 - Additional Problem Details
-     - Element type is defined by varialbe ele_type = "D2_nn4_quad" (corresponding to 2D quadrilateral with 4 gauss points)
-     - Domain parameters are defined: L = 10, H = 5, nx = 4, ny = 2
-     - Extension amount is defined: lambda_target = 1.05 (5% extension)
+    - Element type is defined by varialbe ele_type = "D2_nn4_quad" (corresponding to 2D quadrilateral with 4 gauss points)
+    - Domain parameters are defined: L = 10, H = 5, nx = 4, ny = 2
+    - Extension amount is defined: lambda_target = 1.05 (5% extension)
 
 - Mesh Generation
-      - Using the generate_rect_mesh_2d function from the pre_process module, the domain is discretized into a rectangular grid, defined by the length (L) and height (H) of the problem, and the number of elements in the x (nx) and y (ny) directions.
+    - Using the generate_rect_mesh_2d function from the pre_process module, the domain is discretized into a rectangular grid, defined by the length (L) and height (H) of the problem, and the number of elements in the x (nx) and y (ny) directions.
 - Application of Boundary Conditions
-      - Boundary nodes are identified using pre.identify_rect_boundaries, and fixed displacement conditions are applied:
-          - Left boundary: u_x = 0, u_y = 0
-          - Right boundary: u_x = (lambda - 1) * L, u_y = 0
-          - Top and Bottom boundaries: u_y = 0
-      - These fixed boudnary conditions are combined into a single array "fixed_nodes".
+    - Boundary nodes are identified using pre.identify_rect_boundaries, and fixed displacement conditions are applied:
+        - Left boundary: u_x = 0, u_y = 0
+        - Right boundary: u_x = (lambda - 1) * L, u_y = 0
+        - Top and Bottom boundaries: u_y = 0
+    - These fixed boudnary conditions are combined into a single array "fixed_nodes".
 - Solver Setup and Execution
-      - Load distribution, material properties, and number of incremental loading steps are defined.
-      - A nonlinear solver function "hyperelastic_solver" is used to compute the nodal displacements for the element for the defined number of incremental loading steps, with set convergence tolerances and maximum number of iterations.
+    - Load distribution, material properties, and number of incremental loading steps are defined.
+    - A nonlinear solver function "hyperelastic_solver" is used to compute the nodal displacements for the element for the defined number of incremental loading steps, with set convergence tolerances and maximum number of iterations.
   
 - Comparison of genereated displacements with analytical solution values
-      - After solving for the displacements, the code extracts the displacement in the x-direction (u_x) for the nodes near the mid-height (H/2)
-      - The computed displacement values are compared to the analytical solution (u_z(x) = (lambda - 1) * x)
-      - The computed displacement is graphically compared to the analytical solution via matplotlib. This plot is saved as a .png image in the tutorials directory/folder.
+    - After solving for the displacements, the code extracts the displacement in the x-direction (u_x) for the nodes near the mid-height (H/2)
+    - The computed displacement values are compared to the analytical solution (u_z(x) = (lambda - 1) * x)
+    - The computed displacement is graphically compared to the analytical solution via matplotlib. This plot is saved as a .png image in the tutorials directory/folder.
       - Additionally, an animation of the deformation is generated using the function viz.make_deformation_gif, which creates a .gif file to illustrate how the mesh deforms over time.
