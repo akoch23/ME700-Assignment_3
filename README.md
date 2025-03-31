@@ -53,12 +53,12 @@ pytest -v --cov=DSM_functions --cov-report term-missing
     - The Analytical Solution (displacement field) is defined as u_x(x) = (lambda - 1) * x, u_y(x)
  
 - Additional Problem Details
-    - Element type is defined by varialbe ele_type = "D2_nn4_quad" (corresponding to 2D quadrilateral with 4 gauss points)
+    - Element type is defined by variable ele_type = "D2_nn4_quad" (corresponding to a 2D bilinear quadrilateral with 4 nodes)
     - Domain parameters are defined: L = 10, H = 5, nx = 4, ny = 2
     - Extension amount is defined: lambda_target = 1.05 (5% extension)
 
 - Mesh Generation
-    - Using the generate_rect_mesh_2d function from the pre_process module, the domain is discretized into a rectangular grid, defined by the length (L) and height (H) of the problem, and the number of elements in the x (nx) and y (ny) directions.
+    - Using the generate_rect_mesh_2d function from the pre_process module, the domain is discretized into a 2D rectangular grid, defined by the lower-left corner coordinates (0, 0), upper-right corner coordinates (length (L). height (H)), and the number of elements in the x (nx) and y (ny) directions along x and y.
 - Application of Boundary Conditions
     - Boundary nodes are identified using pre.identify_rect_boundaries, and fixed displacement conditions are applied:
         - Left boundary: u_x = 0, u_y = 0
