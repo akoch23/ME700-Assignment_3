@@ -53,7 +53,7 @@ pytest -v --cov=DSM_functions --cov-report term-missing
     - The Analytical Solution (displacement field) is defined as u_x(x) = (lambda - 1) * x, u_y(x)
  
 - Additional Problem Details
-      - Element type is defined by varialbe ele_type = "D2_nn4_quad" (corresponding to 2D quadrilateral with 4 gauss points)
+ - Element type is defined by varialbe ele_type = "D2_nn4_quad" (corresponding to 2D quadrilateral with 4 gauss points)
       - Domain parameters are defined: L = 10, H = 5, nx = 4, ny = 2
       - Extension amount is defined: lambda_target = 1.05 (5% extension)
 
