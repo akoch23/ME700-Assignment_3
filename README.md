@@ -38,6 +38,12 @@ pytest -v --cov=DSM_functions --cov-report term-missing
 
 
 ## FEA Solver Overview (via tutorials/full_code_example_1.py)
+
+- Schematic:
+
+  ![Assignment 3 Part 3 Schematic](https://github.com/user-attachments/assets/3d5a8689-e4a9-4829-8b11-1b6868f9225b)
+
+
 - Overview:
     - As stated by the initial documentation, this code solves a finite element analysis (FEA) problem for a homogeneous uniaxial extension, comparing the computed displacement field to an analytical solution. More specifically, it simulates the response of a rectangular domain under a uniaxial extension via FEA. The results are visualized through a plot and an animated GIF showing the deformation over time.
 
