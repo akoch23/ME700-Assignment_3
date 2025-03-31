@@ -64,7 +64,7 @@ pytest -v --cov=DSM_functions --cov-report term-missing
         - Left boundary: u_x = 0, u_y = 0
         - Right boundary: u_x = (lambda - 1) * L, u_y = 0
         - Top and Bottom boundaries: u_y = 0
-    - These fixed boudnary conditions are combined into a single array "fixed_nodes".
+    - These fixed boundary conditions are combined into a single array "fixed_nodes".
 - Solver Setup and Execution
     - Load distribution, material properties, and number of incremental loading steps are defined.
     - A nonlinear solver function "hyperelastic_solver" is used to compute the nodal displacements for the element for the defined number of incremental loading steps, with set convergence tolerances and maximum number of iterations.
