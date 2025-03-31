@@ -46,10 +46,28 @@ pytest -v --cov=DSM_functions --cov-report term-missing
     - Required libraries for FEA Solver operation:
         - Specialized: Several modules are imported specifically from the finiteelementanalysis folder (pre_process, pre_process_demo_helper, and the hyperelastic_solver function from the solver module)
         - General: matplotlib, numpy, and pathlib are imported for graphing, mathematic operations, and file system pathing respectively
+          
 - Defining of Boundary Condition and Analytical Solution
-    - 
+    - The homogeneous uniaxial extension occurs along the x-direction, with the y-direction remaining unchanged. The left (lower) boundary is set at the origin with no displacement, and the right (upper) boundary at the value "L" undergoes some displacement  in the x-direction (lambda_target - 1) * L, with no displacement in tye y-direction.
+    - Top and bottom boundaries are y=0 and y=H.
+    - The Analytical Solution (displacement field) is defined as u_x(x) = (lambda - 1) * x, u_y(x)
+ 
+- Additional Problem Details
+      - Element type is defined by varialbe ele_type = "D2_nn4_quad" (corresponding to 2D quadrilateral with 4 gauss points)
+      - Domain parameters are defined: L = 10, H = 5, nx = 4, ny = 2
+      - Extension amount is defined: lambda_target = 1.05 (5% extension)
+
 - Mesh Generation
+      - Using the generate_rect_mesh_2d function from the pre_process module, the domain is discretized into a rectangular grid, defined by the length (L) and height (H) of the problem, and the number of elements in the x (nx) and y (ny) directions.
 - Application of Boundary Conditions
-- Solver Setup
+      - Boundary nodes are identified using pre.identify_rect_boundaries, and fixed displacement conditions are applied:
+          - Left boundary: u_x = 0, u_y = 0
+          - Right boundary: u_x = (lambda - 1) * L, u_y = 0
+          - Top and Bottom boundaries: u_y = 0
+      - These fixed boudnary conditions are combined into a single array "fixed_nodes".
+- Solver Setup and Execution
+      - Load distribution, material properties, and number of incremental loading steps are defined.
+      - A nonlinear solver function "hyperelastic_solver" is used to compute the nodal displacements for the element for the defined number of incremental loading steps, with set convergence tolerances and maximum number of iterations.
+  
 - Comparison of genereated displacements with analytical solution values
 - Displacement Visualization
