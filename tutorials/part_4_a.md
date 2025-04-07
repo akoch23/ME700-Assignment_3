@@ -7,20 +7,19 @@ The only elements of the code that are changed are some of the input parameters,
 Within the full_code_example_1.py file, alter the following variables to equate these values:
 
 Inputs:
-ele_type = "D2_nn4_quad"
+- ele_type = "D2_nn4_quad"
+- L = 40.0
+- H = 20.0
+- nx = 16    
+- ny = 8 
 
-L = 40.0
-H = 20.0
-nx = 16    
-ny = 8 
-
-material_props = np.array([200, 80])
-nr_num_steps = 10
+- material_props = np.array([200, 80])
+- nr_num_steps = 10
 
 Outputs:
-mesh_img_fname = tutorials_dir / "full_code_example_1_mesh_new.png"
-img_fname = tutorials_dir / "uniaxial_extension_error_new.png"
-img_name = "full_code_example_1_new.gif"
+- mesh_img_fname = tutorials_dir / "full_code_example_1_mesh_new.png"
+- img_fname = tutorials_dir / "uniaxial_extension_error_new.png"
+- img_name = "full_code_example_1_new.gif"
 
 Validation of code performance is presented visually through the generated image file "uniaxial_extension_error_new.png", which compares the computed displacement (homogenous deformation) of the defined finite element in the x-direction (itself visualized step-wise in the animated "full_code_example_1_new.gif" file) to the analytical solution, which is defined as u_x(x) = (lambda - 1)*x for x, and u_y(x) = 0 for y.
 
