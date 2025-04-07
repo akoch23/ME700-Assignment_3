@@ -26,5 +26,11 @@ Validation of code performance is presented visually through the generated image
 
 Output files should look like this:
 
-_uniaxial_extension_error_new.png_
+uniaxial_extension_error_new.png
 ![uniaxial_extension_error_new](https://github.com/user-attachments/assets/3467874a-6bdd-4236-87dc-6025910fd82e)
+
+full_code_example_1_new
+![full_code_example_1_new](https://github.com/user-attachments/assets/9b8e1b63-be2e-4dc5-b2e1-9043cf2de2f2)
+
+full_code_example_1_mesh_new
+![full_code_example_1_mesh_new](https://github.com/user-attachments/assets/0c29a87d-dc6b-4728-9525-f5616a4b4398)
