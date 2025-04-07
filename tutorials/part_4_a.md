@@ -21,16 +21,17 @@ Outputs:
 - img_fname = tutorials_dir / "uniaxial_extension_error_new.png"
 - img_name = "full_code_example_1_new.gif"
 
+
 Validation of code performance is presented visually through the generated image file "uniaxial_extension_error_new.png", which compares the computed displacement (homogenous deformation) of the defined finite element in the x-direction (itself visualized step-wise in the animated "full_code_example_1_new.gif" file) to the analytical solution, which is defined as u_x(x) = (lambda - 1)*x for x, and u_y(x) = 0 for y.
 
 
 ### Output files should look like this:
 
-uniaxial_extension_error_new.png
+**uniaxial_extension_error_new.png**
 ![uniaxial_extension_error_new](https://github.com/user-attachments/assets/3467874a-6bdd-4236-87dc-6025910fd82e)
 
-full_code_example_1_new
+**full_code_example_1_new**
 ![full_code_example_1_new](https://github.com/user-attachments/assets/9b8e1b63-be2e-4dc5-b2e1-9043cf2de2f2)
 
-full_code_example_1_mesh_new
+**full_code_example_1_mesh_new**
 ![full_code_example_1_mesh_new](https://github.com/user-attachments/assets/0c29a87d-dc6b-4728-9525-f5616a4b4398)
