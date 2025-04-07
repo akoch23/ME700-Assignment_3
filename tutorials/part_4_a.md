@@ -26,5 +26,5 @@ Validation of code performance is presented visually through the generated image
 
 Output files should look like this:
 
-uniaxial_extension_error_new.png
+_uniaxial_extension_error_new.png_
 ![uniaxial_extension_error_new](https://github.com/user-attachments/assets/3467874a-6bdd-4236-87dc-6025910fd82e)
