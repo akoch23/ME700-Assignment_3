@@ -3,7 +3,7 @@
 This short tutorial requires the usage of the full_code_example_1.py file from the "finite-element-analysis" repository, located within the "tutorials" folder. That file also requires the main files from the library, so downloading the entire repository is necessary. 
 Link: https://github.com/Lejeune-Lab-Graduate-Course-Materials/finite-element-analysis/tree/main
 
-The only elements of the code that are changed are some of the input parameters, and output file naming.
+The only elements of the code that are changed are some of the input parameters, and output file naming (You may also want to create a copy of/save the original full_code_example_1.py file as a new file with a different name).
 Within the full_code_example_1.py file, alter the following variables to equate these values:
 
 Inputs:
