@@ -145,9 +145,10 @@ plt.grid(True)
 plt.tight_layout()
 ```
 
-###full_code_example_2_new (Animation of Deformation)###
+#### full_code_example_2_new (Animation of Deformation)
 ![full_code_example_2_new](https://github.com/user-attachments/assets/6fdc6b02-91db-442a-9db3-5affd6795bb1)
 
+![mesh_refinement_h](https://github.com/user-attachments/assets/cd30d803-1f70-4580-9196-ecf3b8792f0b)
 
 
 
@@ -249,3 +250,5 @@ plt.legend()
 plt.grid(True)
 plt.tight_layout()
 ```
+
+![mesh_refinement_p](https://github.com/user-attachments/assets/53df0517-ca76-4f4b-97c6-8aaf96fa8ec7)
