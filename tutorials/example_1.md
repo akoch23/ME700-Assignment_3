@@ -53,7 +53,7 @@ For the given finite element type, here is the expected input code and resulting
 from finiteelementanalysis import discretization_demo_helper_fcns as di_demo
 import numpy as np
 
-# Define function that will weight nodes (can omit if combing code with previous step, as fcn is already defined)
+# Define function that will weight nodes
 def fcn(x, y):
     return 2.0 * x + 3.0 * y + 1.5 * x * y
 
