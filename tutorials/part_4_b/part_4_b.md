@@ -16,7 +16,7 @@ Inputs:
 - mu = E / (2.0 * (1.0 + nu))
 - kappa (K) = E / (3.0 * (1.0 - 2.0 * nu))
 
-# Analytic Solution
+## Analytic Solution
 For small deflections, the tip displacement at (x=L, y=H/2) can be determined by the Euler-Bernoulli beam formula. For For a cantilever beam of length L, height H, uniform load q, and plane strain, the material properties can be derived thus:
 
 mu    = E/(2*(1+nu))
@@ -29,7 +29,7 @@ w(L) = q*L^4 / (8*E*I)
 
 I = H^3/12
 
-## h-refinement method
+### h-refinement method
 H-refinement involves increasing the number of elements within the domain of the deflection funciton. The element size will shrink in order to increase the mesh resolution and be refined in the x- amd y-directions.
 
 
@@ -152,7 +152,7 @@ plt.tight_layout()
 
 
 
-## p-refinement method
+### p-refinement method
 P-refinement refers to increasing the polynomial degree of the shape functions without altering the mesh (creating elements with more nodes). By comparing another, more complex finite element with the previous one (D2_nn8_quad vs. D2_nn4_quad):
 
 ```
