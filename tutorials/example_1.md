@@ -38,9 +38,9 @@ def fcn(xi, eta):
 ele_type = "D2_nn3_tri"
 node_coords = np.array([[0, 0], [1, 0], [0, 1]])
 node_values = np.array([fcn(xi, eta) for xi, eta in node_coords])
-fname = ele_type + "_interpolate_fcn.png"
 
 # Visualize Scalar Field interpolated across a sampling of points in natural coordinates
+fname = ele_type + "_interpolate_fcn.png"
 di_demo.plot_interpolate_field_natural_coords_single_element(fname, ele_type, node_values)
 ```
 ![image](https://github.com/user-attachments/assets/3b201a00-85fa-4aa8-85ba-1b7175ab9708)
