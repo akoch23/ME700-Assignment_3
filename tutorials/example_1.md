@@ -32,11 +32,11 @@ import numpy as np
 
 # Define function that will weight nodes
 def fcn(xi, eta):
-    return 2.0 * xi + 3.0 * eta + 1.5 * xi * eta
+    return 3.0 * xi + 2.0 * eta + 5 * xi * eta
 
 # Define variables for visualization function (finite element type, array contain node coordinates (exact coordinates are user defined), value of the field at each node (using previously defined fcn function), and desired file name)
 ele_type = "D2_nn3_tri"
-node_coords = np.array([[0, 0], [1, 0], [0, 1]])
+node_coords = np.array([[0, 0], [1, 0], [0, 1]]) # natural coordinates
 node_values = np.array([fcn(xi, eta) for xi, eta in node_coords])
 
 # Visualize Scalar Field interpolated across a sampling of points in natural coordinates
@@ -55,11 +55,11 @@ import numpy as np
 
 # Define function that will weight nodes
 def fcn(x, y):
-    return 2.0 * x + 3.0 * y + 1.5 * x * y
+    return 3.0 * x + 2.0 * y + 5.0 * x * y
 
 #Define variables for visualization function (finite element type, array contain node coordinates (exact coordinates are user defined), value of the field at each node (using previously defined fcn function), and desired file name)
 ele_type = "D2_nn3_tri"
-node_coords = np.array([[0,0], [1, 0], [0, 1]])
+node_coords = np.array([[0,3], [1, 1], [3, 3]]) # physical coordinates
 node_values = np.array([fcn(x, y) for x, y in node_coords])
 
 fname = ele_type + "_interpolate_fcn_physical_coords.png"
@@ -68,3 +68,55 @@ di_demo.visualize_isoparametric_mapping_single_element(str(fname), ele_type, nod
 ```
 
 ![image](https://github.com/user-attachments/assets/c2279f2f-f033-47fb-a1ed-093841c31417)
+
+```python
+from finiteelementanalysis import discretization_demo_helper_fcns as di_demo
+import numpy as np
+
+def fcn(x, y):
+    return 3.0 * x + 2.0 * y + 5.0 * x * y
+
+def fcn_deriv(x, y):
+    return np.asarray([3.0 + 5.0 * y, 2.0 + 5.0 * x]).reshape((2, 1))
+
+ele_type = "D2_nn3_tri"
+node_coords = np.array([[0, 0], [1, 0], [0, 1]]) #physical coordinates
+node_values = np.array([fcn(x, y) for x, y in node_coords])
+print(node_values)
+
+xi, eta = 1/3, 1/3
+# element center in natural coordinates
+
+# Map the test point from natural to physical coordinates
+x_mapped = di_demo.interpolate_field_natural_coords_single_element(
+    ele_type, node_coords[:, 0], [xi], [eta]
+).flatten()[0]
+y_mapped = di_demo.interpolate_field_natural_coords_single_element(
+    ele_type, node_coords[:, 1], [xi], [eta]
+).flatten()[0]
+print(x_mapped)
+print(y_mapped)
+
+
+# Evaluate the function derivative in physical coordinates
+mapped_deriv = fcn_deriv(x_mapped, y_mapped)
+print(mapped_deriv)
+
+# Compute the numerical gradient in natural coordinates
+gradient_natural = di_demo.interpolate_gradient_natural_coords_single_element(
+    ele_type, node_values, np.array([xi]), np.array([eta])
+)
+print("---",gradient_natural,"---")
+
+# Transform the numerical gradient to physical coordinates
+gradient_physical = di_demo.transform_gradient_to_physical(
+    ele_type, node_coords, np.array([xi]), np.array([eta]), gradient_natural
+).reshape((2, 1))
+
+print(gradient_physical)
+
+if np.allclose(mapped_deriv, gradient_physical, atol=10e-10):
+    print("analytical and numerical derivatives match!")
+else:
+    print("not close - error likely")
+```
