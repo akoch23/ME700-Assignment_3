@@ -88,6 +88,8 @@ plot_interpolation_gradient_with_error(
 )
 ```
 
+### 2D Mesh with Gauss Points:
+
 ![image](https://github.com/user-attachments/assets/451ac8f0-2ec2-4100-92c7-8bf6b07f75dd)
 
 ### Element Quality Histograms:
