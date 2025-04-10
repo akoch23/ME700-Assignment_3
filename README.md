@@ -82,5 +82,5 @@ pytest -v --cov=DSM_functions --cov-report term-missing
       - Additionally, an animation of the deformation is generated using the function viz.make_deformation_gif, which creates a .gif file to illustrate how the mesh deforms over time.
      
 
-## Part 1, 2, and 4 Tutorials
+### Part 1, 2, and 4 Tutorials
 See "tutorials" directory for all tutorials relating to Parts 1, 2, and 4 of this Assignment (This README constitutes Part 3).
