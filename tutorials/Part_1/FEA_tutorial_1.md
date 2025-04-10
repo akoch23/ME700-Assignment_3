@@ -20,7 +20,7 @@ fname = "D2_nn3_tri_3gp.png"
 di_demo.visualize_gauss_pts(fname, ele_type, num_gauss_pts)
 
 ```
-![image](https://github.com/user-attachments/assets/eebd8095-e4fb-4969-8ceb-98412222907c)
+![image](https://github.com/user-attachments/assets/848a4e00-ffcf-4b09-b4e4-acdf02b777b5)
 
 
 ## Visualization of Interpolated Field for 2D Triangular Element with 3 Nodes (Natural Coordinates)
@@ -44,7 +44,8 @@ node_values = np.array([fcn(xi, eta) for xi, eta in node_coords])
 fname = ele_type + "_interpolate_fcn.png"
 di_demo.plot_interpolate_field_natural_coords_single_element(fname, ele_type, node_values)
 ```
-![image](https://github.com/user-attachments/assets/3b201a00-85fa-4aa8-85ba-1b7175ab9708)
+![image](https://github.com/user-attachments/assets/4f3b185c-3161-4e58-ad20-8dfda1eb4a2c)
+
 
 ## Visualzation of Reference Elemement (Natural Coordinates) and Mapped Element (Physical Coordinates)
 
