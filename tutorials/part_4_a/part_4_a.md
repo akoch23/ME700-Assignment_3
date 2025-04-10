@@ -161,14 +161,19 @@ fname = str(tutorials_dir / img_name)
 viz.make_deformation_gif(displacements_all, coords, connect, ele_type, fname)
 ```
 
+# Error
+
+The computed mean absolute error between the computed displacement values and analytically determined displacement values for mid-height nodes is 7.445024988662815e-16.
 
 ### Output files should look like this:
 
-**uniaxial_extension_error_new.png**
-![uniaxial_extension_error_new](https://github.com/user-attachments/assets/3467874a-6bdd-4236-87dc-6025910fd82e)
+**full_code_example_1_new (Animation of Deformation)**
+![full_code_example_1_new](https://github.com/user-attachments/assets/37814951-f9e3-4b34-88d3-3a6217157118)
 
-**full_code_example_1_new**
-![full_code_example_1_new](https://github.com/user-attachments/assets/9b8e1b63-be2e-4dc5-b2e1-9043cf2de2f2)
+**full_code_example_1_mesh_new (Constructed Mesh for Beam)**
+![full_code_example_1_mesh_new](https://github.com/user-attachments/assets/fa8973fc-9ca1-4205-9907-37dba7a19e9c)
 
-**full_code_example_1_mesh_new**
-![full_code_example_1_mesh_new](https://github.com/user-attachments/assets/0c29a87d-dc6b-4728-9525-f5616a4b4398)
+**uniaxial_extension_error_new.png (Comparison of Computed and Analytical Solution towards Convergence)**
+![uniaxial_extension_error_new](https://github.com/user-attachments/assets/526a2f3a-6338-4951-96ae-4d47871e947d)
+
+
