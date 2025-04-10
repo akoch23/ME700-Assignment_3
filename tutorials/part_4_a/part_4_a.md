@@ -17,10 +17,7 @@ Inputs: (Material = Random Aluminum Alloy)
 - H = 8.0 m
 - nx = 20 elements   
 - ny = 4 elements
-- mu = 26.90 GPa
-- K = 68.00 GPa
-
-- material_props = np.array([26.90, 68.00])
+- material_props = np.array([26.90, 68.00]) (i.e., mu = 26.90 GPa,  K = 68.00 GPa)
 - nr_num_steps = 10
 
 Outputs:
