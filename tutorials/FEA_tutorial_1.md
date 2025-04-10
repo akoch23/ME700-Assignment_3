@@ -68,7 +68,8 @@ fname = ele_type + "_interpolate_fcn_physical_coords.png"
 di_demo.visualize_isoparametric_mapping_single_element(str(fname), ele_type, node_coords, node_values)
 ```
 
-![image](https://github.com/user-attachments/assets/05c6f287-c24a-45b8-bf07-cc5f22636cad)
+![image](https://github.com/user-attachments/assets/edba4108-3041-4c33-9f17-44293eed11fb)
+
 
 
 ```python
