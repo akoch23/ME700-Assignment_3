@@ -1,10 +1,10 @@
-**Part 1 Tutorial: Discretization of a 2D element (linear, triangular)**,
+# Part 1 Tutorial: Discretization of a 2D element (linear, triangular)
 
 The existing FEA discretization modules grant users the ability to analyze and visualize several finite element types. In this example, a 2D triangular element with 3 nodes will be used.
 
 Additionally, the exact syntax that you will need to define some of these variables are explained within the discretization and discretization_demo_helper_fcns modules, so you may have those open concurrently with this tutorial.
 
-**Visualization of Gauss Points and Element Nodes for 2D Triangular Element with 3 Nodes + 1 Gauss Point**
+## Visualization of Gauss Points and Element Nodes for 2D Triangular Element with 3 Nodes + 1 Gauss Point
 
 For the given finite element type, here is the expected input code and resulting output:
 
@@ -23,7 +23,7 @@ di_demo.visualize_gauss_pts(fname, ele_type, num_gauss_pts)
 ![image](https://github.com/user-attachments/assets/eebd8095-e4fb-4969-8ceb-98412222907c)
 
 
-**Visualization of Interpolated Field for 2D Triangular Element with 3 Nodes (Natural Coordinates)**
+## Visualization of Interpolated Field for 2D Triangular Element with 3 Nodes (Natural Coordinates)
 
 For the given finite element type, here is the expected input code and resulting output:
 
@@ -46,7 +46,7 @@ di_demo.plot_interpolate_field_natural_coords_single_element(fname, ele_type, no
 ```
 ![image](https://github.com/user-attachments/assets/3b201a00-85fa-4aa8-85ba-1b7175ab9708)
 
-**Visualzation of Reference Elemement (Natural Coordinates) and Mapped Element (Physical Coordinates)**
+## Visualzation of Reference Elemement (Natural Coordinates) and Mapped Element (Physical Coordinates)
 
 For the given finite element type, here is the expected input code and resulting output:
 
@@ -70,7 +70,7 @@ di_demo.visualize_isoparametric_mapping_single_element(str(fname), ele_type, nod
 
 ![image](https://github.com/user-attachments/assets/edba4108-3041-4c33-9f17-44293eed11fb)
 
-
+## Derivative Validation
 
 ```python
 from finiteelementanalysis import discretization_demo_helper_fcns as di_demo
@@ -118,6 +118,7 @@ if np.allclose(mapped_deriv, gradient_physical, atol=10e-10):
     print("Analytical and numerical derivatives match!")
 ```
 
+## Integration of Derivative over Element Area
 
 ```python
 from finiteelementanalysis import discretization_demo_helper_fcns as di_demo
