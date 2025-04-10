@@ -80,11 +80,11 @@ def fcn_deriv(x, y):
     return np.asarray([3.0 + 5.0 * y, 2.0 + 5.0 * x]).reshape((2, 1))
 
 ele_type = "D2_nn3_tri"
-node_coords = np.array([[0, 0], [1, 0], [0, 1]]) #physical coordinates
+node_coords = np.array([[0, 0], [4, 1], [0, 5]]) # physical coordinates
 node_values = np.array([fcn(x, y) for x, y in node_coords])
 print(node_values)
 
-xi, eta = 1/3, 1/3
+xi, eta = 0, 0
 # element center in natural coordinates
 
 # Map the test point from natural to physical coordinates
@@ -94,29 +94,23 @@ x_mapped = di_demo.interpolate_field_natural_coords_single_element(
 y_mapped = di_demo.interpolate_field_natural_coords_single_element(
     ele_type, node_coords[:, 1], [xi], [eta]
 ).flatten()[0]
-print(x_mapped)
-print(y_mapped)
-
 
 # Evaluate the function derivative in physical coordinates
 mapped_deriv = fcn_deriv(x_mapped, y_mapped)
-print(mapped_deriv)
 
 # Compute the numerical gradient in natural coordinates
 gradient_natural = di_demo.interpolate_gradient_natural_coords_single_element(
     ele_type, node_values, np.array([xi]), np.array([eta])
 )
-print("---",gradient_natural,"---")
 
 # Transform the numerical gradient to physical coordinates
 gradient_physical = di_demo.transform_gradient_to_physical(
     ele_type, node_coords, np.array([xi]), np.array([eta]), gradient_natural
 ).reshape((2, 1))
 
-print(gradient_physical)
+print('Mapped Derivative:\n', mapped_deriv)
+print('Physical Gradient:\n',gradient_physical)
 
 if np.allclose(mapped_deriv, gradient_physical, atol=10e-10):
-    print("analytical and numerical derivatives match!")
-else:
-    print("not close - error likely")
+    print("Analytical and numerical derivatives match!")
 ```
