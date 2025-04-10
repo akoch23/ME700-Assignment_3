@@ -61,8 +61,8 @@ def fcn(x, y):
 ele_type = "D2_nn3_tri"
 node_coords = np.array([[0,0], [1, 0], [0, 1]])
 node_values = np.array([fcn(x, y) for x, y in node_coords])
-fname = ele_type + "_interpolate_fcn_physical_coords.png"
 
+fname = ele_type + "_interpolate_fcn_physical_coords.png"
 # Visualize the isoparametric mapping of the reference element to its physical shape
 di_demo.visualize_isoparametric_mapping_single_element(str(fname), ele_type, node_coords, node_values)
 ```
