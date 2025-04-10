@@ -114,3 +114,48 @@ print('Physical Gradient:\n',gradient_physical)
 if np.allclose(mapped_deriv, gradient_physical, atol=10e-10):
     print("Analytical and numerical derivatives match!")
 ```
+
+
+```python
+from finiteelementanalysis import discretization_demo_helper_fcns as di_demo
+import numpy as np
+
+def fcn(x, y):
+    return 2.0 * x + 6.0 * y
+
+def fcn_deriv(x, y):
+    return np.asarray([3.0, 10.0])
+
+def element_area(node_coords):
+    x1, y1 = node_coords[0]
+    x2, y2 = node_coords[1]
+    x3, y3 = node_coords[2]
+    x4, y4 = node_coords[3]
+    area = 0.5 * abs((x1 * y2 + x2 * y3 + x3 * y4 + x4 * y1) 
+                     - (y1 * x2 + y2 * x3 + y3 * x4 + y4 * x1))
+    return area
+
+def integral_of_deriv(node_coords):
+    area = element_area(node_coords)
+    return np.array([3.0 * area, 10.0 * area]).reshape((2, 1))
+
+ele_type = "D2_nn3_tri"
+num_gauss_pts = 1
+node_coords = np.array([[0, 0], [4, 1], [0, 5]])
+
+# Compute nodal values from fcn(x, y)
+nodal_values = np.array([[fcn(x, y) for x, y in node_coords]]).T
+
+# Compute numerical integral
+integral_numerical = di_demo.compute_integral_of_derivative(
+    ele_type, num_gauss_pts, node_coords, nodal_values)
+
+# Compute analytical integral
+integral_analytical = integral_of_deriv(node_coords)
+
+print('Numerical Integral:\n', integral_numerical)
+print('Analytic Integral:\n',integral_analytical)
+
+# check result
+if np.allclose(integral_numerical, integral_analytical, atol=10e-9):
+    print("analytical and numerical integrals of derivatives match!")
