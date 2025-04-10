@@ -4,7 +4,7 @@ The existing FEA discretization modules grant users the ability to analyze and v
 
 Additionally, the exact syntax that you will need to define some of these variables are explained within the discretization and discretization_demo_helper_fcns modules, so you may have those open concurrently with this tutorial.
 
-**Visualization of Gauss Points and Element Nodes for 2D Triangular Element with 3 Nodes**
+**Visualization of Gauss Points and Element Nodes for 2D Triangular Element with 3 Nodes + 1 Gauss Point**
 
 For the given finite element type, here is the expected input code and resulting output:
 
@@ -20,7 +20,8 @@ fname = "D2_nn3_tri_3gp.png"
 di_demo.visualize_gauss_pts(fname, ele_type, num_gauss_pts)
 
 ```
-![image](https://github.com/user-attachments/assets/47c59a26-5171-4994-85ae-675b494831bc)
+![image](https://github.com/user-attachments/assets/eebd8095-e4fb-4969-8ceb-98412222907c)
+
 
 **Visualization of Interpolated Field for 2D Triangular Element with 3 Nodes (Natural Coordinates)**
 
@@ -67,7 +68,8 @@ fname = ele_type + "_interpolate_fcn_physical_coords.png"
 di_demo.visualize_isoparametric_mapping_single_element(str(fname), ele_type, node_coords, node_values)
 ```
 
-![image](https://github.com/user-attachments/assets/c2279f2f-f033-47fb-a1ed-093841c31417)
+![image](https://github.com/user-attachments/assets/05c6f287-c24a-45b8-bf07-cc5f22636cad)
+
 
 ```python
 from finiteelementanalysis import discretization_demo_helper_fcns as di_demo
