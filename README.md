@@ -80,3 +80,7 @@ pytest -v --cov=DSM_functions --cov-report term-missing
     - The computed displacement values are compared to the analytical solution (u_z(x) = (lambda - 1) * x)
     - The computed displacement is graphically compared to the analytical solution via matplotlib. This plot is saved as a .png image in the tutorials directory/folder.
       - Additionally, an animation of the deformation is generated using the function viz.make_deformation_gif, which creates a .gif file to illustrate how the mesh deforms over time.
+     
+
+## Part 1, 2, and 4 Tutorials
+See "tutorials" directory for all tutorials relating to Parts 1, 2, and 4 of this Assignment (This README constitutes Part 3).
