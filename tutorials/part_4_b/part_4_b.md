@@ -33,7 +33,7 @@ I = H^3/12
 H-refinement involves increasing the number of elements within the domain of the deflection funciton. The element size will shrink in order to increase the mesh resolution and be refined in the x- amd y-directions.
 
 
-```
+```python
 import warnings
 warnings.simplefilter("always")
 from finiteelementanalysis import pre_process as pre
@@ -250,7 +250,7 @@ plt.savefig(str(img_fname))
 ### p-refinement method
 P-refinement refers to increasing the polynomial degree of the shape functions without altering the mesh (creating elements with more nodes). By comparing another, more complex finite element with the previous one (D2_nn8_quad vs. D2_nn4_quad):
 
-```
+```python
 # New Beam and Mesh Info (P-Refinement)
 
 L = 60.0   # length in x
