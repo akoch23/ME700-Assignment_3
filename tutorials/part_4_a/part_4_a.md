@@ -36,7 +36,7 @@ Validation of code performance is presented visually through the generated image
 For small homegenous uniaxial extensions, the displacement of the beam can be found via the following formula:
 u_x = (lambda - 1)*x and u_y = 0
 
-'''
+```
 import warnings
 warnings.simplefilter("always")
 from finiteelementanalysis import pre_process as pre
@@ -159,10 +159,8 @@ plt.savefig(str(img_fname))
 img_name = "full_code_example_1_new.gif"
 fname = str(tutorials_dir / img_name)
 viz.make_deformation_gif(displacements_all, coords, connect, ele_type, fname)
+```
 
-
-
-'''
 
 ### Output files should look like this:
 
