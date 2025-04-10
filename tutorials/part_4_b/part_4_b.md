@@ -52,7 +52,7 @@ tutorials_dir = Path(__file__).parent
 #  Beam Geometry/Mesh Info
 L = 60.0   # length in x
 H = 6.0    # height in y
-nx_list = np.array([10, 25, 50, 100, 125])    # number of elements along length
+nx_list_4 = np.array([5, 10, 25, 50, 100, 125])    # number of elements along length
 ny = 2     # number of elements along height
 q = -10 # downward load per unit length (in x) acting on top edge of beam
 ele_type = "D2_nn4_quad"  # 2D, 4-node quadrilateral (linear)
@@ -75,10 +75,10 @@ print(f"Material properties: mu={mu:.3f}, kappa={kappa:.3f}")
 nr_num_steps = 6
 
 # Empty list for x-displacement values (to be filled)
-all_tip_disp_x = []
+all_tip_disp_x_d4 = []
 
 # Mesh Generation and Boundary Condition Definition
-for ix, nx in enumerate(nx_list):
+for ix, nx in enumerate(nx_list_4):
 
     # Generate Mesh
     coords, connect = pre.generate_rect_mesh_2d(ele_type, 0.0, 0.0, L, H, nx, ny)
@@ -91,10 +91,106 @@ for ix, nx in enumerate(nx_list):
     # 1. Fix Left Boundary:
     fixed_left = pre.assign_fixed_nodes_rect(boundary_nodes, "left", 0.0, 0.0)
 
-    #2. Uniform Downward Load on the Top Edge (y = H)
+    # 2. Uniform Downward Load on the Top Edge (y = H)
     dload_info = dload_info = pre.assign_uniform_load_rect(boundary_edges, "top", 0.0, q)
 
-    #3. Combine all fixed Boundary Conditions
+    # 3. Combine all fixed Boundary Conditions
+    fixed_nodes = fixed_left
+
+    # Solve iteratively using Hyperelastic Solver
+    displacements_all, nr_info_all = hyperelastic_solver(
+        material_props,
+        ele_type,
+        coords.T,      # shape (2, n_nodes)
+        connect.T,     # shape (n_nodes_per_elem, n_elems)
+        fixed_nodes,
+        dload_info,
+        nr_print=True,
+        nr_num_steps=nr_num_steps,
+        nr_tol=1e-10,
+        nr_maxit=30,
+    )
+
+    final_disp = displacements_all[-1]  # shape: (n_nodes*ndof,)
+
+    # Compute the tip displacement from FEA result using node near beam tip (x = L, y = H/2)
+    tip_node = None
+    tol = 1e-3
+    for i, (x, y) in enumerate(coords):
+        if abs(x - L) < tol and abs(y - H/2) < H/(2*ny):
+            tip_node = i
+            break
+    if tip_node is None:
+        raise ValueError("Could not find tip node near x=L, y=H/2.")
+
+    tip_disp_x = final_disp[ndof*tip_node + 1]  # the x-component of displacement
+    all_tip_disp_x_d4.append(tip_disp_x) # Append final displacement values to list of all x-displacements
+
+
+
+# Plot Mesh with Final Shape Deformation
+img_name = "full_code_example_2_new.gif"
+fname = str(tutorials_dir / img_name)
+viz.make_deformation_gif(displacements_all, coords, connect, ele_type, fname)
+
+# Plot Results
+plt.figure(figsize=(8, 6))
+plt.plot(nx_list_4, all_tip_disp_x_d4, 'ro-', label="Tip Displacement")
+#plt.semilogx(q_loop, all_w_analytic, 'b--', label="Analytical w")
+plt.xlabel("nx ")
+plt.ylabel("w (m)")
+plt.title("Mesh Refinement: h-refinment, nx")
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+img_fname = tutorials_dir / "mesh_refinement_h"
+plt.savefig(str(img_fname))
+
+
+# Additional Beam and Mesh Info (H-Refinement, y-direction)
+
+#  Beam Geometry/Mesh Info
+L = 60.0   # length in x
+H = 6.0    # height in y
+nx = 50   # number of elements along length
+ny_list_4 = np.array([2, 4, 6])      # number of elements along height
+q = -10     # downward load per unit length (in x) acting on top edge of beam
+ele_type = "D2_nn4_quad"  # 2D, 4-node quadrilateral (linear)
+ndof = 2                  # 2 DOFs per node (x, y)
+
+# Material Properties
+E = 100000.0
+nu = 0.3
+mu = E / (2.0 * (1.0 + nu))
+kappa = E / (3.0 * (1.0 - 2.0 * nu))
+
+material_props = np.array([mu, kappa])
+print(f"Material properties: mu={mu:.3f}, kappa={kappa:.3f}")
+
+# Number of incremental load steps
+nr_num_steps = 6
+
+# Empty list for x-displacement values (to be filled)
+all_tip_disp_y_d4 = []
+
+# Mesh Generation and Boundary Condition Definition
+for ix, nx in enumerate(ny_list_4):
+
+    # Generate Mesh
+    coords, connect = pre.generate_rect_mesh_2d(ele_type, 0.0, 0.0, L, H, nx, ny)
+
+    # Identify Boundaries
+    boundary_nodes, boundary_edges = pre.identify_rect_boundaries(coords, connect, ele_type, 0, L, 0, H)
+
+    # Apply Boundary Conditions:
+
+    # 1. Fix Left Boundary:
+    fixed_left = pre.assign_fixed_nodes_rect(boundary_nodes, "left", 0.0, 0.0)
+
+    # 2. Uniform Downward Load on the Top Edge (y = H)
+    dload_info = dload_info = pre.assign_uniform_load_rect(boundary_edges, "top", 0.0, q)
+
+    # 3. Combine all fixed Boundary Conditions
     fixed_nodes = fixed_left
 
     # Solve iteratively using Hyperelastic Solver
@@ -124,32 +220,30 @@ for ix, nx in enumerate(nx_list):
         raise ValueError("Could not find tip node near x=L, y=H/2.")
 
     tip_disp_y = final_disp[ndof*tip_node + 1]  # the y-component of displacement
-    all_tip_disp_x.append(tip_disp_y) # Append final displacement values to list of all x-displacements
+    all_tip_disp_y_d4.append(tip_disp_y)
 
 
-
-# Plot Mesh with Final Shape Deformation
-img_name = "full_code_example_2_new.gif"
-fname = str(tutorials_dir / img_name)
-viz.make_deformation_gif(displacements_all, coords, connect, ele_type, fname)
-
-# Plot Results
 plt.figure(figsize=(8, 6))
-plt.plot(nx_list, all_tip_disp_x, 'ro-', label="Tip Displacement")
+plt.plot(ny_list_4, all_tip_disp_y_d4, 'ro-')
 #plt.semilogx(q_loop, all_w_analytic, 'b--', label="Analytical w")
-plt.xlabel("nx ")
+plt.xlabel("ny ")
 plt.ylabel("w (m)")
-plt.title("Mesh Refinement: h-refinment, nx")
+plt.title("Mesh Refinement: h-refinment, ny")
 plt.legend()
 plt.grid(True)
 plt.tight_layout()
+img_fname = tutorials_dir / "mesh_refinement_h2"
+plt.savefig(str(img_fname))
 ```
 
 #### full_code_example_2_new (Animation of Deformation)
 ![full_code_example_2_new](https://github.com/user-attachments/assets/6fdc6b02-91db-442a-9db3-5affd6795bb1)
 
-![mesh_refinement_h](https://github.com/user-attachments/assets/cd30d803-1f70-4580-9196-ecf3b8792f0b)
+#### Mesh Refinement (h-refinement, nx)
+![mesh_refinement_h](https://github.com/user-attachments/assets/532a468f-580f-48a6-ac96-dbc7c3e919f2)
 
+#### Mesh Refinement (h-refinement, ny)
+![mesh_refinement_h2](https://github.com/user-attachments/assets/c5e92cbb-400c-4bea-8ae9-762abce232da)
 
 
 
@@ -157,18 +251,15 @@ plt.tight_layout()
 P-refinement refers to increasing the polynomial degree of the shape functions without altering the mesh (creating elements with more nodes). By comparing another, more complex finite element with the previous one (D2_nn8_quad vs. D2_nn4_quad):
 
 ```
-# New Beam and Mesh Info
-
-ele_type = "D2_nn8_quad"
-ndof = 2 # 2 DOF per node (x, y)
+# New Beam and Mesh Info (P-Refinement)
 
 L = 60.0   # length in x
 H = 6.0    # height in y
 nx_list_8 = np.array([5, 10, 25, 50, 100, 125])    # number of elements along length
-ny = 2     # number of elements along height
-
-q = -10 # load per unit length 
-
+ny = 2      # number of elements along height
+q = -10     # downward load per unit length (in x) acting on top edge of beam
+ele_type = "D2_nn8_quad" # 2D, 4-node quadrilateral (linear)
+ndof = 2                 # 2 DOF per node (x, y)
 
 # Material Properties
 
@@ -236,9 +327,9 @@ for ix, nx in enumerate(nx_list_8):
         raise ValueError("Could not find tip node near x=L, y=H/2.")
 
     # and find the displacement at this node
-    tip_disp_y = final_disp[ndof*tip_node + 1]  # the y-component of displacement
+    tip_disp_x = final_disp[ndof*tip_node + 1]  # the x-component of displacement
 
-    all_tip_disp_x_d8.append(tip_disp_y)
+    all_tip_disp_x_d8.append(tip_disp_x)
 
 plt.figure(figsize=(8, 6))
 plt.semilogx(nx_list_4, all_tip_disp_x_d4, 'ro-', label="D2_nn4_quad")
@@ -249,6 +340,8 @@ plt.title("Mesh Refinements: D2_nn4_quad vs D2_nn8_quad")
 plt.legend()
 plt.grid(True)
 plt.tight_layout()
+img_fname = tutorials_dir / "mesh_refinement_p"
+plt.savefig(str(img_fname))
 ```
 
 ![mesh_refinement_p](https://github.com/user-attachments/assets/53df0517-ca76-4f4b-97c6-8aaf96fa8ec7)
