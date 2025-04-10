@@ -173,7 +173,7 @@ The computed mean absolute error between the computed displacement values and an
 **full_code_example_1_mesh_new (Constructed Mesh for Beam)**
 ![full_code_example_1_mesh_new](https://github.com/user-attachments/assets/fa8973fc-9ca1-4205-9907-37dba7a19e9c)
 
-**uniaxial_extension_error_new.png (Comparison of Computed and Analytical Solution towards Convergence)**
+**uniaxial_extension_error_new.png (Comparison of Computed and Analytical Solution for x-direction displacement)**
 ![uniaxial_extension_error_new](https://github.com/user-attachments/assets/526a2f3a-6338-4951-96ae-4d47871e947d)
 
 
