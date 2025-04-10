@@ -5,7 +5,7 @@ In the code block below, instead of using the assign_fixed_nodes_rect function f
 
 
 
-```
+```python
 import warnings
 warnings.simplefilter("always")
 from finiteelementanalysis import pre_process as pre
@@ -97,10 +97,5 @@ print(f"Tip node index: {tip_node}, coordinates={coords[tip_node]}")
 print(f"Computed tip deflection (y): {tip_disp_y:.6f}")
 
 ```
-c:\Users\kochl\anaconda3\envs\finite-element-analysis-env\Lib\site-packages\numpy\linalg\_linalg.py:2432: RuntimeWarning: invalid value encountered in det
-  r = _umath_linalg.det(a, signature=signature)
-C:\Users\kochl\Downloads\finite-element-analysis-main\finite-element-analysis-main\src\finiteelementanalysis\solver.py:133: MatrixRankWarning: Matrix is exactly singular
-  d_displacement = spla.spsolve(K_sparse, R)
-Iteration 1, Correction=0.000000e+00, Residual=nan, tolerance=1.000000e-10
-Tip node index: 41, coordinates=[60.  3.]
-Computed tip deflection (y): nan
+![image](https://github.com/user-attachments/assets/d929e61b-f197-4b74-aac5-03c765aabc69)
+
