@@ -33,7 +33,7 @@ Validation of code performance is presented visually through the generated image
 For small homegenous uniaxial extensions, the displacement of the beam can be found via the following formula:
 u_x = (lambda - 1)*x and u_y = 0
 
-```
+```python
 import warnings
 warnings.simplefilter("always")
 from finiteelementanalysis import pre_process as pre
