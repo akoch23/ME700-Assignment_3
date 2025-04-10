@@ -14,9 +14,9 @@ from finiteelementanalysis import discretization_demo_helper_fcns as di_demo
 # Define function variables (finite element type, # of gauss points in specified element type, plot type for specified element type, and desired file name)
 ele_type = "D2_nn3_tri"
 num_gauss_pts = 3
-fname = "D2_nn3_tri_3gp.png"
 
 # Visualize Gauss points and element nodes in natural coordinates
+fname = "D2_nn3_tri_3gp.png"
 di_demo.visualize_gauss_pts(fname, ele_type, num_gauss_pts)
 
 ```
