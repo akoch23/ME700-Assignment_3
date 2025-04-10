@@ -115,7 +115,9 @@ print('Mapped Derivative:\n', mapped_deriv)
 print('Physical Gradient:\n',gradient_physical)
 
 if np.allclose(mapped_deriv, gradient_physical, atol=10e-10):
-    print("Analytical and numerical derivatives match!")
+    print("Analytical and numerical derivatives match.")
+else:
+    print("Derivative values are not similar, significant value error likely.")
 ```
 
 ## Integration of Derivative over Element Area
@@ -162,4 +164,7 @@ print('Analytic Integral:\n',integral_analytical)
 
 # check result
 if np.allclose(integral_numerical, integral_analytical, atol=10e-9):
-    print("analytical and numerical integrals of derivatives match!")
+    print("Analytical and numerical integrals of derivatives match.")
+else:
+    print("Derivative values are not similar, significant value error likely.")
+
